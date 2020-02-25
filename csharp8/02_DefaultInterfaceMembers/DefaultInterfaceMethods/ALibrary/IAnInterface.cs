@@ -11,7 +11,5 @@ namespace ALibrary
         }
 
         public static void Foo() => Console.WriteLine("Foo");
-
-
     }
 }

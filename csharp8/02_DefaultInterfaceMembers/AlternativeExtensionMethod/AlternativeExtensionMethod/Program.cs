@@ -25,20 +25,15 @@ namespace AlternativeExtensionMethod
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var coll = new MyCollection<string>() { "James", "Jack", "Niki", "Jochen", "Sebastian", "Lewis", "Juan" };
-            var jRacers = GetJRacers(coll);
+            IEnumerableEx<string> racers = 
+                new MyCollection<string>() { "James", "Jack", "Niki", "Jochen", "Sebastian", "Lewis", "Juan" };
+            var jRacers = racers.Where(r => r.StartsWith("J"));
             foreach (var r in jRacers)
             {
                 Console.WriteLine(r);
-            }
-            
-        }
-
-        static IEnumerable<string> GetJRacers(IEnumerableEx<string> racers)
-        {
-            return racers.Where(r => r.StartsWith("J"));
+            }           
         }
     }
 }
