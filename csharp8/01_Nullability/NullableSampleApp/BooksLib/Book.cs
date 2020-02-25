@@ -7,7 +7,7 @@ namespace NullableSampleApp
         public Book(string title)
             => Title = title;
 
-        public int BookId { get; set; } = -1;
+        public int BookId { get; internal set; } = -1;
 
         [MaxLength(50)]
         public string Title { get; set; }
