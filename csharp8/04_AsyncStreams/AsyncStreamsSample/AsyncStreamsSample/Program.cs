@@ -9,27 +9,18 @@ namespace AsyncStreamsSample
     {
         static async Task Main()
         {
-            // await Demo3Async();
-            // await Demo2Async();
             await Demo1Async();
+            // await Demo2Async();
+            // await Demo3Async();
         }
 
-        private static async Task Demo3Async()
+        private static async Task Demo1Async()
         {
-            try
-            {
-                var cts = new CancellationTokenSource();
-                cts.CancelAfter(5000);
-                var aDevice = new ADevice();
+            var aDevice = new ADevice();
 
-                await foreach (var x in aDevice.GetSensorData2().WithCancellation(cts.Token))
-                {
-                    Console.WriteLine($"{x.Value1} {x.Value2}");
-                }
-            }
-            catch (OperationCanceledException ex)
+            await foreach (var x in aDevice.GetSensorData1())
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"{x.Value1} {x.Value2}");
             }
         }
 
@@ -53,13 +44,22 @@ namespace AsyncStreamsSample
             }
         }
 
-        private static async Task Demo1Async()
+        private static async Task Demo3Async()
         {
-            var aDevice = new ADevice();
-
-            await foreach (var x in aDevice.GetSensorData1())
+            try
             {
-                Console.WriteLine($"{x.Value1} {x.Value2}");
+                var cts = new CancellationTokenSource();
+                cts.CancelAfter(5000);
+                var aDevice = new ADevice();
+
+                await foreach (var x in aDevice.GetSensorData2().WithCancellation(cts.Token))
+                {
+                    Console.WriteLine($"{x.Value1} {x.Value2}");
+                }
+            }
+            catch (OperationCanceledException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
