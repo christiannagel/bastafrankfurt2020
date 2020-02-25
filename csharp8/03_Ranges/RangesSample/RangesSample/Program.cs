@@ -19,63 +19,35 @@ namespace RangesSample
             Console.WriteLine();
         }
 
-        private static void CustomCollections()
+        private static void RangesWithStrings()
         {
-            Console.WriteLine(nameof(CustomCollections));
-
-            var coll = new MyCollection();
-            var slice = coll[20..^55];
-            foreach (var item in slice)
-            {
-                Console.Write($"{item} ");
-            }
-            Console.WriteLine();
+            string helloWorld = "Hello, World!";
+            string world = helloWorld.Substring(startIndex: 7, length: 5);
+            Console.WriteLine(world);
+            string world1 = helloWorld[7..^1];
+            Console.WriteLine(world1);
         }
 
-        private static void ListSample()
+        private static void RangesWithArrays()
         {
-            Console.WriteLine(nameof(ListSample));
-            var list = Enumerable.Range(0, 100).ToList();
-            var item = list[^20];
-            Console.WriteLine(item);
+            string[] names = { "James", "Niki", "Jochen", "Juan", "Michael", "Sebastian", "Nino", "Lewis" };
 
-            foreach (var i in list.Range(5..30))
+            var lewis = names[^1];
+            Console.WriteLine(lewis);
+            foreach (var name in names[2..^2])  // Jochen, Juan, Michael, Sebastian
             {
-                Console.Write($"{i} ");
+                Console.WriteLine(name);
             }
-            Console.WriteLine();
-
         }
 
-        private static void MutableSample()
+        private static void IndexSample()
         {
-            int[] data = { 1, 2, 3, 4, 5, 6, 7, 8 };
-            var range = data.AsSpan()[2..^2];
+            var data = Enumerable.Range(0, 10).ToArray();
+            Index index1 = 3;
+            var index2 = ^1;
 
-            for (int i = 0; i < range.Length; i++)
-            {
-                range[i] = 42;
-            }
-
-            int result = data.Sum();
-
-            Console.WriteLine($"array did change - result: {result}");
-        }
-
-        private static void ImmutableSample()
-        {
-            int[] data = { 1, 2, 3, 4, 5, 6, 7, 8 };
-            var range = data[2..^2];
-
-            for (int i = 0; i < range.Length; i++)
-            {
-                range[i] = 42;
-            }
-
-            int result = data.Sum();
-            
-            Console.WriteLine($"array didn't change - result: {result}");
-
+            Console.WriteLine($"{index1}: {data[index1]}");
+            Console.WriteLine($"{index2}: {data[index2]}");
         }
 
         private static void RangeSample()
@@ -96,40 +68,64 @@ namespace RangesSample
             string dog = fox1[^4..^1];
             string brownfoxjumped = fox1[10..];
             string thequick = fox1[..9];
-            string fox2 = fox1[..];       
-
-
+            string fox2 = fox1[..];
         }
 
-        private static void IndexSample()
+        private static void ImmutableSample()
         {
-            var data = Enumerable.Range(0, 10).ToArray();
-            Index index1 = 3;
-            var index2 = ^1;            
-         
-            Console.WriteLine($"{index1}: {data[index1]}");
-            Console.WriteLine($"{index2}: {data[index2]}");
-        }
+            int[] data = { 1, 2, 3, 4, 5, 6, 7, 8 };
+            var range = data[2..^2];
 
-        private static void RangesWithArrays()
-        {
-            string[] names = { "James", "Niki", "Jochen", "Juan", "Michael", "Sebastian", "Nino", "Lewis" };
-
-            var lewis = names[^1];
-            Console.WriteLine(lewis);
-            foreach (var name in names[2..^2])  // Jochen, Juan, Michael, Sebastian
+            for (int i = 0; i < range.Length; i++)
             {
-                Console.WriteLine(name);
+                range[i] = 42;
             }
+
+            int result = data.Sum();
+
+            Console.WriteLine($"array didn't change - result: {result}");
         }
 
-        private static void RangesWithStrings()
+        private static void MutableSample()
         {
-            string helloWorld = "Hello, World!";
-            string world = helloWorld.Substring(startIndex: 7, length: 5);
-            Console.WriteLine(world);
-            string world1 = helloWorld[7..^1];
-            Console.WriteLine(world1);
+            int[] data = { 1, 2, 3, 4, 5, 6, 7, 8 };
+            var range = data.AsSpan()[2..^2];
+
+            for (int i = 0; i < range.Length; i++)
+            {
+                range[i] = 42;
+            }
+
+            int result = data.Sum();
+
+            Console.WriteLine($"array did change - result: {result}");
+        }
+
+        private static void ListSample()
+        {
+            Console.WriteLine(nameof(ListSample));
+            var list = Enumerable.Range(0, 100).ToList();
+            var item = list[^20];
+            Console.WriteLine(item);
+
+            foreach (var i in list.Range(5..30))
+            {
+                Console.Write($"{i} ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void CustomCollections()
+        {
+            Console.WriteLine(nameof(CustomCollections));
+
+            var coll = new MyCollection();
+            var slice = coll[20..^55];
+            foreach (var item in slice)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.WriteLine();
         }
     }
 }
