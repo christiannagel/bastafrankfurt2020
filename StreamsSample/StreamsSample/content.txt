@@ -1,3 +1,0 @@
-﻿some text 1 | more text
-some text 2 | more text
-some text 3 | more text
