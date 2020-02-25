@@ -15,7 +15,7 @@ namespace UWPSwitchExpressionSample
                 _               => throw new InvalidOperationException()
             };
 
-        #region too simple version
+        #region this is too simple!
         public LightState GetNextLight(LightState currentLight)
             => currentLight switch
             {
